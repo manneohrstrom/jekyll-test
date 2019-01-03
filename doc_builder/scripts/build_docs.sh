@@ -58,7 +58,7 @@ echo "converting sphinx -> markdown"
 sphinx-build -b markdown -c ${THIS_DIR}/../sphinx -D project='foo' -D release='bar' -D version='0.0.0' ${TMP_BUILD_FOLDER}/git/tk-core/docs ${TMP_BUILD_FOLDER}/markdown_src/tk-core
 
 echo "building jekyll site"
-BUNDLE_GEMFILE=${THIS_DIR}/../Gemfile JEKYLL_ENV=production bundle exec jekyll build --url ${URL} --baseurl ${URLPATH} --config ${THIS_DIR}/../jekyll/_config.yml --source ${TMP_BUILD_FOLDER}/markdown_src --destination ${OUTPUT}
+BUNDLE_GEMFILE=${THIS_DIR}/../Gemfile JEKYLL_ENV=production bundle exec jekyll build --baseurl ${URLPATH} --config ${THIS_DIR}/../jekyll/_config.yml --source ${TMP_BUILD_FOLDER}/markdown_src --destination ${OUTPUT}
 
 
 echo "------------------------------------------------------"
