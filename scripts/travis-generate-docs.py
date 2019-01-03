@@ -37,7 +37,7 @@ output_path = os.path.join(root_path, "_build")
 source_path = os.path.join(root_path, "docs")
 
 
-if os.environ.get("TRAVIS_PULL_REQUEST") == "true":
+if os.environ.get("TRAVIS_BRANCH") != "master":
 
     print "Inside a pull request - will upload preview to S3"
 
@@ -64,14 +64,18 @@ if os.environ.get("TRAVIS_PULL_REQUEST") == "true":
     s3_bucket = s3_client.Bucket(S3_BUCKET)
     upload_folder_to_s3(s3_bucket, output_path, S3_PATH)
 
-    print 'generating pull request comment...'
-    cmd =  "curl -H 'Authorization: token {token}' -X POST ".format(token=os.environ["GITHUB_TOKEN"])
-    cmd += "-d '{\"body\": \"Documentation here: {url}\"}' ".format(url=s3_full_url)
-    cmd += "'https://api.github.com/repos/{repo_slug}/issues/{pull_request}/comments'".format(
-        repo_slug=os.environ["TRAVIS_REPO_SLUG"],
-        pull_request=os.environ["TRAVIS_PULL_REQUEST"]
-    )
-    os.system(cmd)
+
+    if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
+        # TRAVIS_PULL_REQUEST is set to the pull request number if the current
+        # job is a pull request build, or false if it’s not.
+        print 'generating pull request comment...'
+        cmd =  "curl -H 'Authorization: token {token}' -X POST ".format(token=os.environ["GITHUB_TOKEN"])
+        cmd += "-d '{\"body\": \"Documentation here: {url}\"}' ".format(url=s3_full_url)
+        cmd += "'https://api.github.com/repos/{repo_slug}/issues/{pull_request}/comments'".format(
+            repo_slug=os.environ["TRAVIS_REPO_SLUG"],
+            pull_request=os.environ["TRAVIS_PULL_REQUEST"]
+        )
+        os.system(cmd)
 
 
 else:
