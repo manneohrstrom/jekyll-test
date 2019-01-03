@@ -67,7 +67,7 @@ if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_RE
     if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
         print 'generating pull request comment...'
         cmd = "curl -H 'Authorization: token {token}' -X POST ".format(token=os.environ["GITHUB_TOKEN"])
-        cmd += "-d '{\"body\": \"Documentation here: %s\"}' " % (s3_full_url,)
+        cmd += "-d '{\"body\": \"[Documentation build](%s)\"}' " % (s3_full_url,)
         cmd += "'https://api.github.com/repos/{repo_slug}/issues/{pull_request}/comments'".format(
             repo_slug=os.environ["TRAVIS_REPO_SLUG"],
             pull_request=os.environ["TRAVIS_PULL_REQUEST"]
