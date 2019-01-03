@@ -66,8 +66,6 @@ if os.environ.get("TRAVIS_BRANCH") != "master":
 
 
     if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
-        # TRAVIS_PULL_REQUEST is set to the pull request number if the current
-        # job is a pull request build, or false if it’s not.
         print 'generating pull request comment...'
         cmd =  "curl -H 'Authorization: token {token}' -X POST ".format(token=os.environ["GITHUB_TOKEN"])
         cmd += "-d '{\"body\": \"Documentation here: {url}\"}' ".format(url=s3_full_url)
