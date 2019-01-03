@@ -2,7 +2,9 @@ import boto3
 import os
 import sys
 
+print "----------------------------------"
 print "Begin travis doc generation"
+print "----------------------------------"
 
 S3_BUCKET = "doctest3"
 S3_WEB_URL = "http://doctest3.s3-website.eu-west-2.amazonaws.com"
