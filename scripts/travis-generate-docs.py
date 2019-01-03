@@ -37,7 +37,7 @@ output_path = os.path.join(root_path, "_build")
 source_path = os.path.join(root_path, "docs")
 
 
-if os.environ.get("TRAVIS_BRANCH") != "master":
+if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_REQUEST") != "false":
 
     print "Inside a pull request - will upload preview to S3"
 
