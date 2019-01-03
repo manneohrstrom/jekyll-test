@@ -61,7 +61,8 @@ if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_RE
         aws_access_key_id=os.environ["AWS_S3_ACCESS_KEY"],
         aws_secret_access_key=os.environ["AWS_S3_ACCESS_TOKEN"]
     )
-    upload_folder_to_s3(s3_client, output_path, S3_PATH)
+    # note: skip the first slash when uploading to S3 in order to generate a correct path.
+    upload_folder_to_s3(s3_client, output_path, S3_PATH[1:])
 
     if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
         print 'generating pull request comment...'
@@ -73,10 +74,10 @@ if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_RE
         )
         os.system(cmd)
 
-    print ""
+    print "-------------------------------------------------"
     print "Documentation build can be found here:"
     print s3_full_url
-    print ""
+    print "-------------------------------------------------"
 
 else:
 
