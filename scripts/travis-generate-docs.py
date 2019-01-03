@@ -1,6 +1,7 @@
 import boto3
 import os
 import sys
+import mimetypes
 
 print "----------------------------------"
 print "Begin travis doc generation"
@@ -28,8 +29,14 @@ def upload_folder_to_s3(s3_client, src, dst):
             upload_folder_to_s3(s3_client, srcname, dstname)
         else:
             print "upload '{}' -> '{}'".format(srcname, dstname)
-            s3_client.upload_file(srcname, S3_BUCKET, dstname)
-
+            (mime_type, _) = mimetypes.guess_type(srcname)
+            with open(srcname, "rb") as file_handle:
+                s3_client.put_object(
+                    Bucket=S3_BUCKET,
+                    ContentType=mime_type,
+                    Key=dstname,
+                    Body=file_handle
+                )
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 doc_script = os.path.join(root_path, "doc_builder", "scripts", "build_docs.sh")
@@ -61,6 +68,9 @@ if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_RE
         aws_access_key_id=os.environ["AWS_S3_ACCESS_KEY"],
         aws_secret_access_key=os.environ["AWS_S3_ACCESS_TOKEN"]
     )
+
+
+
     # note: skip the first slash when uploading to S3 in order to generate a correct path.
     upload_folder_to_s3(s3_client, output_path, S3_PATH[1:])
 
