@@ -14,7 +14,7 @@ GITHUB_PAGES_URL = "https://manneohrstrom.github.io"
 GITHUB_PAGES_PATH = "/jekyll-test"
 
 
-def upload_folder_to_s3(bucket, src, dst):
+def upload_folder_to_s3(s3_client, src, dst):
     """
     Upload folder to S3
     """
@@ -25,10 +25,10 @@ def upload_folder_to_s3(bucket, src, dst):
         dstname = os.path.join(dst, name)
 
         if os.path.isdir(srcname):
-            upload_folder_to_s3(bucket, srcname, dstname)
+            upload_folder_to_s3(s3_client, srcname, dstname)
         else:
             print "upload '{}' -> '{}'".format(srcname, dstname)
-            bucket.upload_file(srcname, dstname)
+            s3_client.upload_file(srcname, S3_BUCKET, dstname)
 
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -61,8 +61,7 @@ if os.environ.get("TRAVIS_BRANCH") != "master":
         aws_access_key_id=os.environ["AWS_S3_ACCESS_KEY"],
         aws_secret_access_key=os.environ["AWS_S3_ACCESS_TOKEN"]
     )
-    s3_bucket = s3_client.Bucket(S3_BUCKET)
-    upload_folder_to_s3(s3_bucket, output_path, S3_PATH)
+    upload_folder_to_s3(s3_client, output_path, S3_PATH)
 
 
     if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
