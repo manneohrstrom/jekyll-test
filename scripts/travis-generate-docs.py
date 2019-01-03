@@ -63,7 +63,6 @@ if os.environ.get("TRAVIS_BRANCH") != "master":
     )
     upload_folder_to_s3(s3_client, output_path, S3_PATH)
 
-
     if os.environ.get("TRAVIS_PULL_REQUEST") != "false":
         print 'generating pull request comment...'
         cmd =  "curl -H 'Authorization: token {token}' -X POST ".format(token=os.environ["GITHUB_TOKEN"])
@@ -74,6 +73,10 @@ if os.environ.get("TRAVIS_BRANCH") != "master":
         )
         os.system(cmd)
 
+    print ""
+    print "Documentation build can be found here:"
+    print s3_full_url
+    print ""
 
 else:
 
