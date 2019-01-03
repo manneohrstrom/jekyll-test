@@ -30,6 +30,8 @@ def upload_folder_to_s3(s3_client, src, dst):
         else:
             print "upload '{}' -> '{}'".format(srcname, dstname)
             (mime_type, _) = mimetypes.guess_type(srcname)
+            if mime_type is None:
+                mime_type = "application/octet-stream"
             with open(srcname, "rb") as file_handle:
                 s3_client.put_object(
                     Bucket=S3_BUCKET,
@@ -68,8 +70,6 @@ if os.environ.get("TRAVIS_BRANCH") != "master" or os.environ.get("TRAVIS_PULL_RE
         aws_access_key_id=os.environ["AWS_S3_ACCESS_KEY"],
         aws_secret_access_key=os.environ["AWS_S3_ACCESS_TOKEN"]
     )
-
-
 
     # note: skip the first slash when uploading to S3 in order to generate a correct path.
     upload_folder_to_s3(s3_client, output_path, S3_PATH[1:])
