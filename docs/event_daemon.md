@@ -1,6 +1,5 @@
 ---
 layout: default
-lang: en
 title: Shotgun Event Daemon
 ---
 

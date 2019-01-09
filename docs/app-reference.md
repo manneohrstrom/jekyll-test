@@ -1,6 +1,5 @@
 ---
 layout: default
-lang: en
 title: Toolkit App Reference
 has_children: true
 ---

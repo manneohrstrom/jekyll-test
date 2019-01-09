@@ -1,6 +1,5 @@
 ---
 layout: default
-lang: en
 title: Toolkit Framework Reference
 has_children: true
 ---
