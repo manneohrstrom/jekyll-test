@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/manneohrstrom/just-the-docs.git
-  revision: c5ccc1e7110f8e42359c1be9688a5b3da8e65cba
+  revision: e7e1a584dbba07303202bb04e8ae6cd89200b316
   specs:
     just-the-docs (0.2.1)
       jekyll (~> 3.8.5)
