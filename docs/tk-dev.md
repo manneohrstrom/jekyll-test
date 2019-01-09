@@ -3,7 +3,6 @@ layout: default
 title: Toolkit Development
 nav_order: 9
 lang: en
-permalink: /tk-dev/
 ---
 
 # Development

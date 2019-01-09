@@ -3,7 +3,6 @@ layout: default
 title: Tutorials and Videos
 nav_order: 10
 lang: en
-permalink: /tutorials/
 ---
 
 # Tutorials and Videos
