@@ -1,0 +1,4 @@
+repositories:
+  Publisher:
+    git_url: https://github.com/shotgunsoftware/tk-multi-publish2.git
+    parent: Toolkit App Reference

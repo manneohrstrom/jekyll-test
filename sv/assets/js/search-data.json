@@ -1,0 +1,121 @@
+{
+  "0": {
+    "id": "0",
+    "title": "Publish API",
+    "content": "Publish APIThe publish API gives developers access to the underlying data structures andmethods used by the publish UI. They can use this interface to build moreadvanced custom publish workflows.The primary interface to the API is the PublishManager class whichexposes the same collection, validation, publish, and finalizemethods that drive the Publisher UI. The manager contains a reference to aPublishTree instance that operates on the hierarchy ofPublishItem instances (the “things” to be published), each of whichcan have associated PublishTask instances that define how theitems are to be processed.The code below shows how to execute a complete publish using this API:# need to have an engine running in a context where the publisher has been# configured.engine = sgtk.platform.current_engine()# get the publish app instance from the engine's list of configured appspublish_app = engine.apps.get(&quot;tk-multi-publish2&quot;)# ensure we have the publisher instance.if not publish_app:    raise Exception(&quot;The publisher is not configured for this context.&quot;)# create a new publish manager instancemanager = publish_app.create_publish_manager()# now we can run the collector that is configured for this contextmanager.collect_session()# collect some external files to publishmanager.collect_files([path1, path2, path3])# validate the items to publishtasks_failed_validation = manager.validate()# oops, some tasks are invalid. see if they can be fixedif tasks_failed_validation:    fix_invalid_tasks(tasks_failed_validation)    # try again here or bail# all good. let's publish and finalizetry:    manager.publish()    # If a plugin needed to version up a file name after publish    # it would be done in the finalize.    manager.finalize()except Exception as error:    logger.error(&quot;There was trouble trying to publish!&quot;)    logger.error(&quot;Error: %s&quot;, error)See the documentation for each of these classes below for more detail on howto use them.PublishManagerThis class gives developers direct access to the same methods and datastructures used by the Publish UI. You can create an instance of this classdirectly via the configured publish app like this:# need to have an engine running in a context where the publisher has been# configured.engine = sgtk.platform.current_engine()# get the publish app instance from the engine's list of configured appspublish_app = engine.apps.get(&quot;tk-multi-publish2&quot;)# ensure we have the publisher instance.if not publish_app:    raise Exception(&quot;The publisher is not configured for this context.&quot;)# create a new publish manager instancemanager = publish_app.create_publish_manager()PublishTreePublishItemPublishTaskPublishDataPluginSetting",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/api/",
+    "relUrl": "/sphinx/tk-multi-publish2/api/"
+  },
+  "1": {
+    "id": "1",
+    "title": "Toolkit App Reference",
+    "content": "Toolkit App ReferenceLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/app-reference/",
+    "relUrl": "/app-reference/"
+  },
+  "2": {
+    "id": "2",
+    "title": "App Interface",
+    "content": "App Interface",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/application/",
+    "relUrl": "/sphinx/tk-multi-publish2/application/"
+  },
+  "3": {
+    "id": "3",
+    "title": "Publish Customization",
+    "content": "Publish CustomizationThe sections below identify the entry points for customizing publish workflows.For a broad overview of how publish execution works, see thePublish Execution doc.Collector HookThe collector hook handles processing the current user’s session to identifywhat will be published. It also handles processing any file paths that have beendragged/dropped onto the Publisher or added manually via thePublish API. Once the collector identifies what is to be published,Publish Item instances are created within the treeand presented to the user.NOTE: For more information on how to take over, subclass, and manage hooks,see the Hooks documentation.Collector Hook APIPublish PluginPublish plugins are hooks that handle processing of collected publish items.After all items have been collected, the Publisher attempts to match the itemswith the appropriate publish plugins. All matched plugins show up as child taskswithin the publish item hierarchy.With v2.0.0 of the publisher and higher, each plugin can define a custom UIthat allows users to make changes to the publish settings prior to publishing.See the methods and properties section below for details on how to implement acustom publish plugin UI.NOTE: For more information on how to take over, subclass, and manage hooks,see the Hooks documentation.Publish Plugin APIPost Phase Hook",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/customizing/",
+    "relUrl": "/sphinx/tk-multi-publish2/customizing/"
+  },
+  "4": {
+    "id": "4",
+    "title": "Shotgun Event Daemon",
+    "content": "The Shotgun Event DaemonLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.hello hello",
+    "url": "/jekyll-test/event_daemon/",
+    "relUrl": "/event_daemon/"
+  },
+  "5": {
+    "id": "5",
+    "title": "Toolkit Framework Reference",
+    "content": "Toolkit Framework ReferenceLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/framework-reference/",
+    "relUrl": "/framework-reference/"
+  },
+  "6": {
+    "id": "6",
+    "title": "Ordlista",
+    "content": "",
+    "url": "/jekyll-test/glossary.sv/",
+    "relUrl": "/glossary.sv/"
+  },
+  "7": {
+    "id": "7",
+    "title": "Shotgun Publisher API reference, vX.Y.Z",
+    "content": "Shotgun Publisher API reference, vX.Y.ZOverviewThe Publish app is a highly customizable workflow tool that allows studios totrack the data being created by artists and control how it is shared. The appcan be modified for studio-specific needs by way of hooks that control how itemsare identified for presentation to artists for publishing and how those itemsare then processed. In addition to customizing the publish UI behavior, theunderlying Python API that drives the interface is also available for moreadvanced studio customization.Publish ExecutionThe publisher has several phases of execution that developers should be awareof before implementing custom behaviors.The graphic and descriptions below outline these concepts for developers justgetting started with the publisher. The links on the left can be used to examineeach of these concepts and the APIs that drive the publisher in detail.Collection &amp;amp; AcceptanceWhen the Publisher is launched, the current session (Maya, Nuke, Houdini, etc)is processed and publish items are collected for display in the Publish app’sinterface. These items represent what the artists may want to track in Shotgunand/or share with other artists by way of publishing. Similarly, as files aredragged and dropped onto the publish UI, they are processed and collected as publishitems. This item collection behavior is defined by the app’s collector hook andcan be taken over or modified by studios to customize what data should betracked in Shotgun and how it should be shared between artists.NOTE: For a deeper dive into the collection behavior and how it can becustomized, see the Collector Hook docs.Before the collected items are shown in the Publisher UI, they willautomatically be processed for acceptance. Publish plugins are configured forthe Publisher that define how items are processed when a publish is triggered.During the acceptance phase, each configured plugin will have a chance to accepteach collected item.This acceptance phase has two parts. The first part handles comparing thecollected item’s type specification to a list of filters provided by the publishplugin. If the item’s type specification matches one of the plugin’s filters,then the second part of acceptance is triggered. This part allows the configuredplugin to further inspect the item to indicate if it can and will operate on theitem.For each plugin that is accepted, a publish task is shown in the UI. Thesepublish tasks represent the processing that will happen once a publish istriggered.NOTE: For a deeper dive into the publish plugin behavior and how it can becustomized, see the Publish Plugin docs.Item ReviewOnce the acceptance phase is complete, the user can review the items, makechanges to the target context of each, provide publish descriptions, take screengrabs, and update settings. Additional files can also be dragged and dropped orbrowsed to for collection.PublishingAfter the artist has taken the time to review the collected items, they canperform one of two actions;      They can run a validation pass on the items. This will trigger a validationpass for each task in the list in the order in which they are displayed.        The user can also decide to run the full publish pass. This will include allthe validation steps above followed by execution of each plugin’s publishpass followed by execution of each plugin’s finalize pass.  NOTE: The overview above describes the publish execution in terms of anartist launching the Publish UI. All of these concepts, includingcollection, acceptance, and publish plugins are exposed by thePublish API making it possible to build more advanced, custom publishworkflows outside of the default Publish UI.The following sections outline all of the hooks and APIs available to studiosfor publish workflow building and customization.      Publish Customization                  Collector Hook                    Publish Plugin                    Post Phase Hook                  Publish API                  PublishManager                    PublishTree                    PublishItem                    PublishTask                    PublishData                    PluginSetting                  Logging                  Generic Action                    Show Folder Action                    Show in Shotgun Action                    Show More Info Action                    Open URL Action                  Utilities        App Interface  ",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/",
+    "relUrl": "/sphinx/tk-multi-publish2/"
+  },
+  "8": {
+    "id": "8",
+    "title": "Toolkit API Reference",
+    "content": "Toolkit API Reference      Shotgun Publisher API reference, vX.Y.Z                  Overview                              Publish Execution                                          Collection &amp;amp; Acceptance                                            Item Review                                            Publishing                                                      Publish Customization                                                                  Collector Hook                                                  Collector Hook API                                                                                            Publish Plugin                                                  Publish Plugin API                                                                                            Post Phase Hook                                                                                                  Publish API                                                                  PublishManager                                                                    PublishTree                                                                    PublishItem                                                                    PublishTask                                                                    PublishData                                                                    PluginSetting                                                                                                  Logging                                                                  Generic Action                                                                    Show Folder Action                                                                    Show in Shotgun Action                                                                    Show More Info Action                                                                    Open URL Action                                                                                                  Utilities                                                        App Interface                                                                                          ",
+    "url": "/jekyll-test/sphinx/",
+    "relUrl": "/sphinx/"
+  },
+  "9": {
+    "id": "9",
+    "title": "Utvecklingsportal",
+    "content": "Toolkits UtvecklingsportalHej hopp!blahblahblahblah.We need coffee or Tea",
+    "url": "/jekyll-test/",
+    "relUrl": "/"
+  },
+  "10": {
+    "id": "10",
+    "title": "Knowledge Base",
+    "content": "Knowledge BaseLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/kb/",
+    "relUrl": "/kb/"
+  },
+  "11": {
+    "id": "11",
+    "title": "Logging",
+    "content": "LoggingAny logging in the collector and publish plugin hooks will be displayed in theprogress details widget of the Publisher. The image below shows logging outputfrom a publish in Maya.The standard logging methods can be used to display information, warnings,errors, and debug messages to the user.The publisher has a special logging handler that will make use of the standardextra dict to display action buttons next to the log messages.These special action button types are detailed below:Generic ActionA generic button to execute a callback method when clicked.The dict supplied takes the following form:&quot;action_button&quot;: {    &quot;label&quot;: &amp;lt;label&amp;gt;,    &quot;tooltip&quot;: &amp;lt;tooltip&amp;gt;,    &quot;callback&quot;: &amp;lt;callback&amp;gt;,    &quot;args&quot;: &amp;lt;args&amp;gt;}The values in the dict are:      label: The text to display on the button itself        tooltip: The tooltip text to display when the mouse is over the button.        callback: The callable to execute when the button is clicked.        args: A dictionary to supply to the callback as keyword args.  Example:self.logger.error(    &quot;Validation failed! Here's a quick fix that might work!&quot;,    extra={        &quot;action_button&quot;: {            &quot;label&quot;: &quot;Fix Geometry&quot;,            &quot;tooltip&quot;: &quot;Click this button to auto-fix the bad geometry.&quot;,            &quot;callback&quot;: self._geometry_fix,            &quot;args&quot;: {                &quot;local&quot;: True,                &quot;verts&quot;: False            }        }    })The image below shows how this action button would appear in the log output viewof the publish UI:Show Folder ActionA common action for showing the folder for a supplied path in the system’s filebrowser.The dict supplied takes the following form:&quot;action_button&quot;: {    &quot;label&quot;: &amp;lt;label&amp;gt;,    &quot;tooltip&quot;: &amp;lt;tooltip&amp;gt;,    &quot;path&quot;: &amp;lt;path&amp;gt;}The values in the dict are:      label: The text to display on the button itself. The default value is&quot;Show Folder&quot;. Optional.        tooltip: Optional tooltip text to display when the mouse is over thebutton. The default value is &quot;Reveal in the system's file browser.&quot;.        path: Required path to the file.  Example:self.logger.warning(    &quot;File is not named correctly. Open enclosing folder...&quot;,    extra={        &quot;action_show_folder&quot;: {            &quot;path&quot;: file_path        }    })The image below shows how this action button would appear in the log output viewof the publish UI.Show in Shotgun ActionA common action for showing an entity’s detail page in Shotgun.The dict supplied takes the following form:&quot;action_show_in_shotgun&quot;: {    &quot;label&quot;: &amp;lt;label&amp;gt;,    &quot;tooltip&quot;: &amp;lt;tooltip&amp;gt;,    &quot;entity&quot;: &amp;lt;entity&amp;gt;,}The values in the dict are:      label: The text to display on the button itself. The default value is&quot;Show Entity&quot;. Optional.        tooltip: Optional tooltip text to display when the mouse is over thebutton. The default value is &quot;Reveal the entity in Shotgun.&quot;.        entity: Required, standard Shotgun entity dict.  Example:self.logger.info(    &quot;Publish created for file: %s&quot; % (path,),    extra={        &quot;action_show_in_shotgun&quot;: {            &quot;entity&quot;: {                &quot;type&quot;: &quot;PublishedFile,                &quot;id&quot;: 1234            }        }    })The image below shows how this action button would appear in the log output viewof the publish UI.Show More Info ActionA common action for showing more information than what typically fits on asingle line of logging output. The output will be shown in a text browser popupdialog.The dict supplied takes the following form:&quot;action_show_more_info&quot;: {    &quot;label&quot;: &amp;lt;label&amp;gt;,    &quot;tooltip&quot;: &amp;lt;tooltip&amp;gt;,    &quot;text&quot;: &amp;lt;text&amp;gt;,}The values in the dict are:      label: The text to display on the button itself. The default value is&quot;More Info...&quot;. Optional.        tooltip: Optional tooltip text to display when the mouse is over thebutton. The default value is &quot;Show additional logging info.&quot;.        test: Required, str with additional information to display tothe user. The text can contain html for formatting for display in the popupwindow (any html tags supported by Qt’s rich text engine).  Example:try:    # something that might fail...except Exception as e:    import traceback    self.logger.error(        &quot;Failed to publish file: %s&quot; % (path,),        extra = {            &quot;action_show_more_info&quot;: {                &quot;label&quot;: &quot;Error Details&quot;,                &quot;tooltip&quot;: &quot;Show the full error stack trace&quot;,                &quot;text&quot;: &quot;&amp;lt;pre&amp;gt;%s&amp;lt;/pre&amp;gt;&quot; % (traceback.format_exc(),)            }        }    )    raiseThe image below shows how this action button would appear in the log output viewof the publish UI.Open URL ActionA common action for opening a supplied URL in the default browser.The dict supplied takes the following form:&quot;action_show_more_info&quot;: {    &quot;label&quot;: &amp;lt;label&amp;gt;,    &quot;tooltip&quot;: &amp;lt;tooltip&amp;gt;,    &quot;url&quot;: &amp;lt;url&amp;gt;,}The values in the dict are:      label: The text to display on the button itself. The default value is&quot;Open URL&quot;. Optional.        tooltip: Optional tooltip text to display when the mouse is over thebutton. The default value is &quot;Opens a url in the appropriate browser.&quot;.        url: The url to open.  Example:self.logger.info(    &quot;Render submitted. Time for coffee...&quot;,    extra={        &quot;action_open_url&quot;: {            &quot;label&quot;: &quot;Find Coffee&quot;,            &quot;url&quot;: &quot;https://www.google.com/search?q=best+coffee+near+me&quot;        }    })The image below shows how this action button would appear in the log output viewof the publish UI.",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/logging/",
+    "relUrl": "/sphinx/tk-multi-publish2/logging/"
+  },
+  "12": {
+    "id": "12",
+    "title": "Release Notes",
+    "content": "Release NotesLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/release-notes/",
+    "relUrl": "/release-notes/"
+  },
+  "13": {
+    "id": "13",
+    "title": "RV",
+    "content": "RVLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/rv/",
+    "relUrl": "/rv/"
+  },
+  "14": {
+    "id": "14",
+    "title": "Toolkit Development",
+    "content": "DevelopmentLorem ipsum dolor amet post-ironic stumptown crucifix hot chicken. Plaid raw denim tumeric subway tile chicharrones, direct trade pop-up. Green juice lyft pickled kogi fingerstache intelligentsia forage, yr artisan roof party succulents chicharrones hot chicken normcore. Tilde vegan vexillologist, cloud bread kale chips shoreditch vice dreamcatcher kickstarter skateboard knausgaard +1 cardigan edison bulb. Cornhole slow-carb messenger bag thundercats bitters 3 wolf moon.",
+    "url": "/jekyll-test/tk-dev/",
+    "relUrl": "/tk-dev/"
+  },
+  "15": {
+    "id": "15",
+    "title": "Exempelgenomgångar och videos",
+    "content": "Exempelgenomgångar och videosVar hittar jag en svensk lorem ipsum?",
+    "url": "/jekyll-test/tutorials/",
+    "relUrl": "/tutorials/"
+  },
+  "16": {
+    "id": "16",
+    "title": "Utilities",
+    "content": "UtilitiesThe publisher provides some utility methods that are generally useful forwriting publish plugins that aren’t driven by templates. These methods are usedby the basic Shotgun integration to infer information from file paths whentemplates are not available. This includes version and frame numberidentification, publish display name, image sequence paths, etc.NOTE: These utility methods are exposed via the publisher’s util module,but the implementation for most of them lives within the app’s path_infohook. Studios can override these path processing methods to account for theirown naming conventions and path structures.The utilty method are documented below:",
+    "url": "/jekyll-test/sphinx/tk-multi-publish2/utility/",
+    "relUrl": "/sphinx/tk-multi-publish2/utility/"
+  }
+}

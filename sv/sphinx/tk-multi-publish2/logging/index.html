@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <title>Logging - Shotgun Developer</title>
+  <link rel="stylesheet" href="/jekyll-test/sv/assets/css/just-the-docs.css">
+  
+  <script type="text/javascript" src="/jekyll-test/assets/js/vendor/lunr.min.js"></script>
+  
+  <script type="text/javascript" src="/jekyll-test/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+  <div class="page-wrap">
+    <div class="side-bar">
+      <a href="/jekyll-test" class="site-title fs-6 lh-tight">Shotgun Developer</a>
+      <span class="fs-3"><button class="js-main-nav-trigger navigation-list-toggle btn btn-outline" type="button" data-text-toggle="Hide">Menu</button></span>
+      <div class="navigation main-nav js-main-nav">
+        <nav>
+  <ul class="navigation-list">
+    
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item active">
+            
+            <a  href="/jekyll-test/sv/app-reference/" 
+               class="navigation-list-link"
+            >
+              Toolkit App Reference
+              
+            </a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item  active">
+                      
+                      <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/" 
+                         class="navigation-list-link"
+                      >
+                        Shotgun Publisher API reference, vX.Y.Z
+                        
+                      </a>
+                      
+                        
+                        <ul class="navigation-list-child-list">
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/api/" 
+                                   class="navigation-list-link"
+                                >
+                                  Publish API
+                                  
+                                </a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/application/" 
+                                   class="navigation-list-link"
+                                >
+                                  App Interface
+                                  
+                                </a>
+                              </li>
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/customizing/" 
+                                   class="navigation-list-link"
+                                >
+                                  Publish Customization
+                                  
+                                </a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                              <li class="navigation-list-item  active">
+                                <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/logging/" 
+                                   class="navigation-list-link active"
+                                >
+                                  Logging
+                                  
+                                </a>
+                              </li>
+                            
+                          
+                            
+                              <li class="navigation-list-item ">
+                                <a  href="/jekyll-test/sv/sphinx/tk-multi-publish2/utility/" 
+                                   class="navigation-list-link"
+                                >
+                                  Utilities
+                                  
+                                </a>
+                              </li>
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                            
+                          
+                        </ul>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/event_daemon/" 
+               class="navigation-list-link"
+            >
+              Shotgun Event Daemon
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/framework-reference/" 
+               class="navigation-list-link"
+            >
+              Toolkit Framework Reference
+              
+            </a>
+            
+              
+              <ul class="navigation-list-child-list ">
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/sphinx/" 
+               class="navigation-list-link"
+            >
+              Toolkit API Reference
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/" 
+               class="navigation-list-link"
+            >
+              Utvecklingsportal
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/rv/" 
+               class="navigation-list-link"
+            >
+              RV
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/tk-dev/" 
+               class="navigation-list-link"
+            >
+              Toolkit Development
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/tutorials/" 
+               class="navigation-list-link"
+            >
+              Exempelgenomgångar och videos
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/release-notes/" 
+               class="navigation-list-link"
+            >
+              Release Notes
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="/jekyll-test/sv/kb/" 
+               class="navigation-list-link"
+            >
+              Knowledge Base
+              
+            </a>
+            
+          </li>
+        
+      
+    
+      
+        
+          <li class="navigation-list-item">
+            
+            <a  href="https://google.com" target="_blank" 
+               class="navigation-list-link"
+            >
+              Ordlista
+              
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" version="1.1" width="14px" height="14px">
+                  <g id="surface1">
+                  <path style=" " d="M 9 2 L 9 3 L 12.292969 3 L 6.023438 9.273438 L 6.726563 9.976563 L 13 3.707031 L 13 7 L 14 7 L 14 2 Z M 4 4 C 2.894531 4 2 4.894531 2 6 L 2 12 C 2 13.105469 2.894531 14 4 14 L 10 14 C 11.105469 14 12 13.105469 12 12 L 12 7 L 11 8 L 11 12 C 11 12.550781 10.550781 13 10 13 L 4 13 C 3.449219 13 3 12.550781 3 12 L 3 6 C 3 5.449219 3.449219 5 4 5 L 8 5 L 9 4 Z "/>
+                  </g>
+                  </svg>
+              
+            </a>
+            
+          </li>
+        
+      
+    
+  </ul>
+</nav>
+
+      </div>
+      <footer role="contentinfo" class="site-footer">
+        <p class="text-small text-grey-dk-000 mb-0">|
+        
+            <a  href=" /jekyll-test/sphinx/tk-multi-publish2/logging/ ">English</a> |
+        
+            <a style="font-weight: bold;" href=" /jekyll-test/sv/sphinx/tk-multi-publish2/logging/ ">Svenska</a> |
+        
+            <a  href=" /jekyll-test/ja/sphinx/tk-multi-publish2/logging/ ">日本語</a> |
+        
+        </p>
+      </footer>
+    </div>
+    <div class="main-content-wrap">
+      <div class="page-header">
+        <div class="main-content">
+          
+          <div class="search js-search">
+            <div class="search-input-wrap">
+              <input type="text" class="js-search-input search-input" placeholder="Search Shotgun Developer" aria-label="Search Shotgun Developer" autocomplete="off">
+              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+            </div>
+            <div class="js-search-results search-results-wrap"></div>
+          </div>
+          
+          
+        </div>
+      </div>
+      <div class="main-content">
+        
+          
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="">Toolkit App Reference</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="">Shotgun Publisher API reference, vX.Y.Z</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Logging</span></li>
+              </ol>
+            </nav>
+          
+        
+        <div class="page-content">
+          <h1 id="logging">Logging</h1>
+
+<p>Any logging in the collector and publish plugin hooks will be displayed in the
+progress details widget of the Publisher. The image below shows logging output
+from a publish in Maya.</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/logging_output.png" alt="image" /></p>
+
+<p>The standard logging methods can be used to display information, warnings,
+errors, and debug messages to the user.</p>
+
+<p>The publisher has a special logging handler that will make use of the standard
+<code class="highlighter-rouge">extra</code> <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> to display action buttons next to the log messages.
+These special action button types are detailed below:</p>
+
+<h2 id="generic-action">Generic Action</h2>
+
+<p>A generic button to execute a callback method when clicked.</p>
+
+<p>The <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> supplied takes the following form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"action_button": {
+    "label": &lt;label&gt;,
+    "tooltip": &lt;tooltip&gt;,
+    "callback": &lt;callback&gt;,
+    "args": &lt;args&gt;
+}
+</code></pre></div></div>
+
+<p>The values in the <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> are:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">label</code>: The text to display on the button itself</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tooltip</code>: The tooltip text to display when the mouse is over the button.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">callback</code>: The callable to execute when the button is clicked.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">args</code>: A dictionary to supply to the callback as keyword args.</p>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.logger.error(
+    "Validation failed! Here's a quick fix that might work!",
+    extra={
+        "action_button": {
+            "label": "Fix Geometry",
+            "tooltip": "Click this button to auto-fix the bad geometry.",
+            "callback": self._geometry_fix,
+            "args": {
+                "local": True,
+                "verts": False
+            }
+        }
+    }
+)
+</code></pre></div></div>
+
+<p>The image below shows how this action button would appear in the log output view
+of the publish UI:</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/log_extra_action_button.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="show-folder-action">Show Folder Action</h2>
+
+<p>A common action for showing the folder for a supplied path in the system’s file
+browser.</p>
+
+<p>The <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> supplied takes the following form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"action_button": {
+    "label": &lt;label&gt;,
+    "tooltip": &lt;tooltip&gt;,
+    "path": &lt;path&gt;
+}
+</code></pre></div></div>
+
+<p>The values in the <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> are:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">label</code>: The text to display on the button itself. The default value is
+<code class="highlighter-rouge">"Show Folder"</code>. Optional.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tooltip</code>: Optional tooltip text to display when the mouse is over the
+button. The default value is <code class="highlighter-rouge">"Reveal in the system's file browser."</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">path</code>: Required path to the file.</p>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.logger.warning(
+    "File is not named correctly. Open enclosing folder...",
+    extra={
+        "action_show_folder": {
+            "path": file_path
+        }
+    }
+)
+</code></pre></div></div>
+
+<p>The image below shows how this action button would appear in the log output view
+of the publish UI.</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/log_extra_action_show_folder.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="show-in-shotgun-action">Show in Shotgun Action</h2>
+
+<p>A common action for showing an entity’s detail page in Shotgun.</p>
+
+<p>The <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> supplied takes the following form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"action_show_in_shotgun": {
+    "label": &lt;label&gt;,
+    "tooltip": &lt;tooltip&gt;,
+    "entity": &lt;entity&gt;,
+}
+</code></pre></div></div>
+
+<p>The values in the <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> are:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">label</code>: The text to display on the button itself. The default value is
+<code class="highlighter-rouge">"Show Entity"</code>. Optional.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tooltip</code>: Optional tooltip text to display when the mouse is over the
+button. The default value is <code class="highlighter-rouge">"Reveal the entity in Shotgun."</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">entity</code>: Required, standard Shotgun entity <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a>.</p>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.logger.info(
+    "Publish created for file: %s" % (path,),
+    extra={
+        "action_show_in_shotgun": {
+            "entity": {
+                "type": "PublishedFile,
+                "id": 1234
+            }
+        }
+    }
+)
+</code></pre></div></div>
+
+<p>The image below shows how this action button would appear in the log output view
+of the publish UI.</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/log_extra_action_show_in_shotgun.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="show-more-info-action">Show More Info Action</h2>
+
+<p>A common action for showing more information than what typically fits on a
+single line of logging output. The output will be shown in a text browser popup
+dialog.</p>
+
+<p>The <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> supplied takes the following form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"action_show_more_info": {
+    "label": &lt;label&gt;,
+    "tooltip": &lt;tooltip&gt;,
+    "text": &lt;text&gt;,
+}
+</code></pre></div></div>
+
+<p>The values in the <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> are:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">label</code>: The text to display on the button itself. The default value is
+<code class="highlighter-rouge">"More Info..."</code>. Optional.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tooltip</code>: Optional tooltip text to display when the mouse is over the
+button. The default value is <code class="highlighter-rouge">"Show additional logging info."</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">test</code>: Required, <a href="https://docs.python.org/2/library/functions.html#str">str</a> with additional information to display to
+the user. The text can contain html for formatting for display in the popup
+window (any html tags supported by Qt’s rich text engine).</p>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>try:
+    # something that might fail...
+except Exception as e:
+    import traceback
+    self.logger.error(
+        "Failed to publish file: %s" % (path,),
+        extra = {
+            "action_show_more_info": {
+                "label": "Error Details",
+                "tooltip": "Show the full error stack trace",
+                "text": "&lt;pre&gt;%s&lt;/pre&gt;" % (traceback.format_exc(),)
+            }
+        }
+    )
+    raise
+</code></pre></div></div>
+
+<p>The image below shows how this action button would appear in the log output view
+of the publish UI.</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/log_extra_action_show_more_info.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="open-url-action">Open URL Action</h2>
+
+<p>A common action for opening a supplied URL in the default browser.</p>
+
+<p>The <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> supplied takes the following form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"action_show_more_info": {
+    "label": &lt;label&gt;,
+    "tooltip": &lt;tooltip&gt;,
+    "url": &lt;url&gt;,
+}
+</code></pre></div></div>
+
+<p>The values in the <a href="https://docs.python.org/2/library/stdtypes.html#dict">dict</a> are:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">label</code>: The text to display on the button itself. The default value is
+<code class="highlighter-rouge">"Open URL"</code>. Optional.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tooltip</code>: Optional tooltip text to display when the mouse is over the
+button. The default value is <code class="highlighter-rouge">"Opens a url in the appropriate browser."</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">url</code>: The url to open.</p>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.logger.info(
+    "Render submitted. Time for coffee...",
+    extra={
+        "action_open_url": {
+            "label": "Find Coffee",
+            "url": "https://www.google.com/search?q=best+coffee+near+me"
+        }
+    }
+)
+</code></pre></div></div>
+
+<p>The image below shows how this action button would appear in the log output view
+of the publish UI.</p>
+
+<p><img src="/jekyll-test/sphinx/tk-multi-publish2/resources/log_extra_action_open_url.png" alt="image" /></p>
+
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
