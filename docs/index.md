@@ -4,6 +4,7 @@ title: Overview
 nav_order: 1
 lang: en
 permalink: /
+nav_exclude: true
 ---
 
 # Toolkit Developer Portal
