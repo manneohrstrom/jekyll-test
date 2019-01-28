@@ -16,7 +16,7 @@
 title: Shotgun Developer
 description: Resources for Shotgun developers, including API documentation, Toolkit and others.
 
-# Build settings
+# Build settings here
 markdown: kramdown
 theme: just-the-docs
 
